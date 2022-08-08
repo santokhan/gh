@@ -11,9 +11,8 @@
   <link rel="icon" href="https://raw.githubusercontent.com/santokhan/gh/main/image/search.png">
 </head>
 
-
-<body class="bg-teal-50 relative">
-  <header>
+<body class="bg-teal-50 relative max-h-screen">
+  <header class="">
     <div class="flex bg-white py-2 justify-center">
       <div class="px-2"><a class="text-xl font-bold hover:opacity-70" href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a></div>
       <div class="px-2"><a class="text-xl font-bold hover:opacity-70" href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a></div>
@@ -21,12 +20,15 @@
       <div class="px-2"><a class="text-xl font-bold hover:opacity-70" href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a></div>
     </div>
   </header>
-  <main class="py-10">
+
+  <main class="py-10 px-2">
+    <div class="block sm:hidden"><img class="w-full" src="https://raw.githubusercontent.com/santokhan/gh/main/image/ads_m.png" alt="mobile_ads"></div>
+
     <section class="flex">
-      <div class="w-2/12 flex justify-center">
+      <div class="sm:w-2/12 hidden sm:flex justify-center">
         <div><img src="https://raw.githubusercontent.com/santokhan/gh/main/image/ads.png" alt="ads"></div>
       </div>
-      <div class="w-8/12 flex-col bg-white shadow-lg py-6 px-10 rounded-2xl overflow-auto">
+      <div class="w-full sm:w-8/12 flex-col bg-white shadow-lg py-6 px-8 rounded-2xl relative overflow-auto" id="searchContainer">
         <div class="flex justify-center py-8">
           <div class="sm:w-1/4 xl:w-2/4">
             <hr class="my-6">
@@ -47,23 +49,31 @@
                 type="search" id="search" placeholder="Start Typing Keyword...">
             </form>
           </div>
-          <div class="grid grid-cols-6">
-            <div>
-              <div></div>
-              <div><a href="#"></a><br></div>
+          <div class="grid grid-cols-3 xl:grid-cols-6">
+            <div class="px-2">
+              <div class="font-medium mb-2"></div>
+              <div><a class="hover:underline hover:opacity-80" href="#"></a><br></div>
             </div>
           </div>
-          <div id="results" class="break-words overflow-auto">
+          <div id="results" class="break-words overflow-auto pb-6">
           </div>
         </div>
       </div>
-      <div class="w-2/12 flex justify-center">
+      <div class="sm:w-2/12 hidden sm:flex justify-center">
         <div><img src="https://raw.githubusercontent.com/santokhan/gh/main/image/ads.png" alt="ads"></div>
       </div>
     </section>
 
   </main>
 
+  <script>
+    document.addEventListener("load", function () {
+      const searchContainer = document.getElementById("searchContainer");
+      const screen = parseInt(window.innerHeight);
+      let searchContainerHeight = "max-height" + parseInt(searchContainer.clientHeight) + 'px';
+      searchContainer.setAttribute("style", searchContainerHeight)
+    })
+  </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script src="./js/query.js"></script>
 </body>

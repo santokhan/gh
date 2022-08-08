@@ -108,29 +108,35 @@ function CleanVal(input) {
 $(document).ready(function () {
   $("#search").keyup(function () {
     var keywords = "";
-    keywords += `<div class="grid grid-cols-6">`;
-    keywords += `<div>
-                     <div class="font-bold">Google</div>
+    keywords += `<div class="grid grid-cols-3 xl:grid-cols-6">`;
+    keywords += `<div class="px-2">
+                     <div class="font-medium mb-2">Google</div>
+                     <hr>
                      <div class="px-1" id="google"></div>
                  </div>`;
-    keywords += `<div>
-                     <div class="font-bold">Yahoo</div>
+    keywords += `<div class="px-2">
+                     <div class="font-medium mb-2">Yahoo</div>
+                     <hr>
                      <div class="px-1" id="yahoo"></div>
                  </div>`;
-    keywords += `<div>
-                     <div class="font-bold">Bing</div>
+    keywords += `<div class="px-2">
+                     <div class="font-medium mb-2">Bing</div>
+                     <hr>
                      <div class="px-1" id="bing"></div>
                  </div>`;
-    keywords += `<div>
-                     <div class="font-bold">Youtube</div>
+    keywords += `<div class="px-2">
+                     <div class="font-medium mb-2">Youtube</div>
+                     <hr>
                      <div class="px-1" id="youtube"></div>
                  </div>`;
-    keywords += `<div>
-                     <div class="font-bold">Amazon</div>
+    keywords += `<div class="px-2">
+                     <div class="font-medium mb-2">Amazon</div>
+                     <hr>
                      <div class="px-1" id="amazon"></div>
                  </div>`;
-    keywords += `<div>
-                     <div class="font-bold">Ebay</div>
+    keywords += `<div class="px-2">
+                     <div class="font-medium mb-2">Ebay</div>
+                     <hr>
                      <div class="px-1" id="ebay"></div>
                  </div>`;
     keywords += `</div>`;
@@ -148,7 +154,7 @@ $(document).ready(function () {
 
         sb =
           sb +
-          '<a href="https://www.google.com/search?q=' +
+          '<a class="hover:underline hover:opacity-80" href="https://www.google.com/search?q=' +
           encodeURIComponent(CleanVal(retList[i])) +
           '" target="_blank" class="live">' +
           CleanVal(retList[i]) +
@@ -165,7 +171,7 @@ $(document).ready(function () {
       $.each(res.gossip.results, function (i, val) {
         sb =
           sb +
-          '<a href="https://search.yahoo.com/search?p=' +
+          '<a class="hover:underline hover:opacity-80" href="https://search.yahoo.com/search?p=' +
           encodeURIComponent(CleanVal(val.key)) +
           '" target="_blank" class="live">' +
           CleanVal(val.key) +
@@ -184,7 +190,7 @@ $(document).ready(function () {
 
         sb =
           sb +
-          '<a href="http://www.bing.com/search?q=' +
+          '<a class="hover:underline hover:opacity-80" href="http://www.bing.com/search?q=' +
           encodeURIComponent(CleanVal(retList[i])) +
           '" target="_blank" class="live">' +
           CleanVal(retList[i]) +
@@ -203,7 +209,7 @@ $(document).ready(function () {
 
         sb =
           sb +
-          '<a href="https://www.youtube.com/results?search_query=' +
+          '<a class="hover:underline hover:opacity-80" href="https://www.youtube.com/results?search_query=' +
           encodeURIComponent(CleanVal(retList[i])) +
           '" target="_blank" class="live">' +
           CleanVal(retList[i]) +
@@ -222,7 +228,7 @@ $(document).ready(function () {
 
         sb =
           sb +
-          '<a href="http://www.amazon.com/s/?field-keywords=' +
+          '<a class="hover:underline hover:opacity-80" href="http://www.amazon.com/s/?field-keywords=' +
           encodeURIComponent(CleanVal(retList[i])) +
           '" target="_blank" class="live">' +
           CleanVal(retList[i]) +
@@ -242,7 +248,7 @@ $(document).ready(function () {
 
         sb =
           sb +
-          '<a href="http://www.ebay.com/sch/i.keywords?_nkw=' +
+          '<a class="hover:underline hover:opacity-80" href="http://www.ebay.com/sch/i.keywords?_nkw=' +
           encodeURIComponent(CleanVal(retList[i])) +
           '" target="_blank" class="live">' +
           CleanVal(retList[i]) +
