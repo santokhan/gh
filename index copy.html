@@ -7,41 +7,21 @@
     <link rel="stylesheet" href="./css/tailwind.css" />
     <link rel="apple-touch-icon" type="text/png" href="img/touch/48.png" />
     <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">
-    <title>SOOVLE</title>
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
-                {
-                    "@type": "Question",
-                    "name": "What is Soovle?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Soovle is a powerful keyword research tool that can help you tool used for finding topics from different search engines including Google, Bing, Yahoo, YouTube, Amazon & eBay."
-                    }
-                }, {
-                    "@type": "Question",
-                    "name": "How to Use Soovle?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Type a keyword/search term/topic and press enter. Check out suggestions from different search engines and copy the ones relevant to your next blog post or video. Use those keywords as outline for your article/video."
-                    }
-                }, {
-                    "@type": "Question",
-                    "name": "Is Soovle free?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Yes Soovle is 100% free and does not have any limitations."
-                    }
-                }
-            ]
+    <title>GH EXPERT</title>
+
+    <style>
+        @media (min-width:768px) {
+            .search-container {
+                max-height: 85vh;
+            }
         }
-    </script>
+    </style>
 </head>
 
-<body class="sm:h-screen sm:overflow-hidden ">
-    <header class="flex justify-between py-1 px-2 sm:px-4 border border-bottom shadow-sm">
-        <div class="w-full text-gray-900 py-2 font-medium text-2xl px-1 text-center">Soovle</div>
-        <div class="hidden">
+<body class="sm:h-screen sm:overflow-hidden bg-gray-900">
+    <header class="bg-teal-400 flex justify-between py-1 px-2 sm:px-4">
+        <div class="text-white py-2 font-medium text-xl px-1">Keiwords Tools</div>
+        <div class="flex">
             <div class="p-2">
                 <a href="#" class="no-underline hover:underline text-xl text-white hover:opacity-75" title="link"><i class="fab fa-facebook"></i></a>
             </div>
@@ -59,7 +39,7 @@
 
     <main>
         <section class="py-5">
-            <div class="uppercase text-2xl font-medium flex justify-center text-gray-900">
+            <div class="uppercase text-2xl font-medium flex justify-center text-teal-500">
                 <div>Instant Search Keywords</div>
             </div>
         </section>
@@ -70,22 +50,22 @@
 
         <div class="flex">
             <div class="hidden sm:block w-2/12 px-2">
-                <div class="rounded-xl sm:rounded-2xl flex justify-center">
+                <div class="bg-teal-50 rounded-xl sm:rounded-2xl flex justify-center">
                     <div><img class="py-4 md:py-6" src="./image/ads.png" alt="skyscrapper-ads"></div>
                 </div>
             </div>
 
             <div class="w-full sm:w-8/12 px-2 overflow-y-auto search-container rounded-xl">
-                <div class="rounded-xl sm:rounded-2xl py-6 lg:p-12">
+                <div class="bg-teal-50 rounded-xl sm:rounded-2xl py-6 lg:p-12">
                     <form class="py-0 px-4 sm:p-4 md:px-10 md:py-4">
                         <div class="sm:px-2 md:px-10">
-                            <input class="w-full py-3 px-6 rounded-full appearance-none border-2 border-white leading-tight focus:outline-none  focus:border-gray-900 shadow-md" id="search"
+                            <input class="w-full py-3 px-6 rounded-full appearance-none border-2 border-white leading-tight focus:outline-none  focus:border-teal-400 shadow-lg" id="search"
                                 name="search" placeholder="Search your keyword">
                         </div>
                     </form>
 
                     <!-- Add hidden class below -->
-                    <div class="flex hidden flex-wrap py-4" id="cards">
+                    <div class="flex flex-wrap hidden py-4" id="cards">
                         <div class="w-1/2 py-2 px-1 sm:px-2">
                             <div class="bg-white py-4 sm:py-6 px-2 sm:px-6 rounded-2xl shadow-lg">
                                 <div class="font-medium h-4 sm:h-6 flex justify-center mb-1 sm:mb-2"><img class="h-full" src="./image/google.png" alt="google">
@@ -95,7 +75,7 @@
 
                                 <div class="flex justify-center pt-4">
                                     <button type="button"
-                                        class="bg-gray-800 hover:bg-gray-600 font-medium py-1 px-4 rounded-xl text-white shadow-xl border-2 border-transparent focus:bg-gray-800 focus:border-gray-900 copy google">
+                                        class="bg-teal-400 hover:bg-teal-500 font-medium py-1 px-4 rounded-xl text-white shadow-xl shadow-teal-100 border-2 border-transparent focus:bg-teal-400 focus:border-teal-900 copy google">
                                         <i class="fas fa-copy"></i><span> Copy</span>
                                     </button>
                                 </div>
@@ -108,7 +88,7 @@
                                 <div id="youtube"></div>
                                 <div class="flex justify-center pt-4">
                                     <button type="button"
-                                        class="bg-gray-800 hover:bg-gray-600 font-medium py-1 px-4 rounded-xl text-white shadow-xl border-2 border-transparent focus:bg-gray-800 focus:border-gray-900 copy youtube">
+                                        class="bg-teal-400 hover:bg-teal-500 font-medium py-1 px-4 rounded-xl text-white shadow-xl shadow-teal-100 border-2 border-transparent focus:bg-teal-400 focus:border-teal-900 copy youtube">
                                         <i class="fas fa-copy"></i><span> Copy</span>
                                     </button>
                                 </div>
@@ -120,7 +100,7 @@
                                 <div id="bing"></div>
                                 <div class="flex justify-center pt-4">
                                     <button type="button"
-                                        class="bg-gray-800 hover:bg-gray-600 font-medium py-1 px-4 rounded-xl text-white shadow-xl border-2 border-transparent focus:bg-gray-800 focus:border-gray-900 copy bing">
+                                        class="bg-teal-400 hover:bg-teal-500 font-medium py-1 px-4 rounded-xl text-white shadow-xl shadow-teal-100 border-2 border-transparent focus:bg-teal-400 focus:border-teal-900 copy bing">
                                         <i class="fas fa-copy"></i><span> Copy</span>
                                     </button>
                                 </div>
@@ -133,7 +113,7 @@
                                 <div id="yahoo"></div>
                                 <div class="flex justify-center pt-4">
                                     <button type="button"
-                                        class="bg-gray-800 hover:bg-gray-600 font-medium py-1 px-4 rounded-xl text-white shadow-xl border-2 border-transparent focus:bg-gray-800 focus:border-gray-900 copy yahoo">
+                                        class="bg-teal-400 hover:bg-teal-500 font-medium py-1 px-4 rounded-xl text-white shadow-xl shadow-teal-100 border-2 border-transparent focus:bg-teal-400 focus:border-teal-900 copy yahoo">
                                         <i class="fas fa-copy"></i><span> Copy</span>
                                     </button>
                                 </div>
@@ -145,7 +125,7 @@
                                 <div id="amazon"></div>
                                 <div class="flex justify-center pt-4">
                                     <button type="button"
-                                        class="bg-gray-800 hover:bg-gray-600 font-medium py-1 px-4 rounded-xl text-white shadow-xl border-2 border-transparent focus:bg-gray-800 focus:border-gray-900 copy amazon">
+                                        class="bg-teal-400 hover:bg-teal-500 font-medium py-1 px-4 rounded-xl text-white shadow-xl shadow-teal-100 border-2 border-transparent focus:bg-teal-400 focus:border-teal-900 copy amazon">
                                         <i class="fas fa-copy"></i><span> Copy</span>
                                     </button>
                                 </div>
@@ -157,7 +137,7 @@
                                 <div id="ebay"></div>
                                 <div class="flex justify-center pt-4">
                                     <button type="button"
-                                        class="bg-gray-800 hover:bg-gray-600 font-medium py-1 px-4 rounded-xl text-white shadow-xl border-2 border-transparent focus:bg-gray-800 focus:border-gray-900 copy ebay">
+                                        class="bg-teal-400 hover:bg-teal-500 font-medium py-1 px-4 rounded-xl text-white shadow-xl shadow-teal-100 border-2 border-transparent focus:bg-teal-400 focus:border-teal-900 copy ebay">
                                         <i class="fas fa-copy"></i><span> Copy</span>
                                     </button>
                                 </div>
@@ -165,17 +145,18 @@
                         </div>
                     </div>
 
-                    <footer class="px-4 sm:px-8 pt-4 md:pt-4 xl:pt-10">
-                        <div class="max-w-4xl mx-auto text-gray-900 font-medium text-md text-center">
+                    <footer class="px-4 sm:px-6 pt-4 md:pt-4 xl:pt-10">
+                        <div class="max-w-5xl mx-auto text-teal-900 font-medium text-xl text-center">
                             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias rem repudiandae numquam cum hic doloremque accusamus, nisi tempora fugit dolorum omnis optio maiores eveniet
-                            mollitia blanditiis repellat iusto dolor magni.
+                            mollitia
+                            blanditiis repellat iusto dolor magni.
                         </div>
                     </footer>
                 </div>
             </div>
 
             <div class="hidden sm:block w-2/12 px-2">
-                <div class="rounded-xl sm:rounded-2xl flex justify-center">
+                <div class="bg-teal-50 rounded-xl sm:rounded-2xl flex justify-center">
                     <div><img class="py-4 md:py-6" src="./image/ads.png" alt="skyscrapper-ads"></div>
                 </div>
             </div>

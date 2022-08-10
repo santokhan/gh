@@ -113,7 +113,7 @@ function CleanVal(input) {
 $(document).ready(function () {
   $("#search").keyup(function () {
     let keyword = $("#search").val();
-    let linkStyle = "text-teal-900 hover:underline hover:text-teal-400 py-1";
+    let linkStyle = "text-gray-900 hover:underline hover:text-gray-800 py-1";
 
     // Show cards remove hidden class
     $("#cards").removeClass("hidden");
