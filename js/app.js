@@ -2,6 +2,11 @@ function QueryKeyword(keyword, site, callback) {
   let querykeyword = keyword;
   let website = site;
 
+  if (querykeyword === "") {
+    // Hide if input is empty
+    $("#cards").addClass("hidden");
+  }
+
   if (website == "bing") {
     $.ajax({
       url: "https://api.bing.com/osjson.aspx?JsonType=callback&JsonCallback=?",
@@ -110,6 +115,7 @@ $(document).ready(function () {
     let keyword = $("#search").val();
     let linkStyle = "text-teal-900 hover:underline hover:text-teal-400 py-1";
 
+    // Show cards remove hidden class
     $("#cards").removeClass("hidden");
 
     QueryKeyword(keyword, "google", function (res) {
