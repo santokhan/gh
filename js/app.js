@@ -103,9 +103,9 @@ function QueryKeyword(keyword, site, callback) {
 
   if (website == "yandex") {
     $.ajax({
-      url: `https://yandex.com/suggest/suggest-ya.cgi?`,
+      url: `https://suggest.yandex.ru/suggest-ya.cgi?ct=text/html&part=`,
       dataType: "jsonp",
-      data: { client: "chrome", n: 30, v: 4, uil: "en", q: querykeyword },
+      data: { ct: "text/html", suggest: 1, part: querykeyword },
       success: callback,
     });
   }
@@ -195,12 +195,14 @@ $(document).ready(function () {
     });
 
     QueryKeyword(keyword, "yahoo", function (res) {
-      let keyList = "";
       let { results } = res.gossip;
 
-      let newKeyList = results.map((e) => e[1]);
-      // console.log({ newKeyList });
+      let newKeyList = [];
+      results.map((e) => {
+        newKeyList.push(e["key"]);
+      });
 
+      let keyList = "";
       results.map((e) => {
         let trim = CleanVal(e.key);
         let encoded = encodeURIComponent(trim);
@@ -209,7 +211,7 @@ $(document).ready(function () {
       });
       $("#yahoo").empty().append(keyList);
 
-      CopyFunc("yahoo", results);
+      CopyFunc("yahoo", newKeyList);
     });
 
     QueryKeyword(keyword, "amazon", function (res) {
@@ -227,21 +229,20 @@ $(document).ready(function () {
       CopyFunc("amazon", retList);
     });
 
-    QueryKeyword(keyword, "ebay", function (res) {
-      console.log(res);
-      // let retList = res.res.sug;
-      // let keyList = "";
+    // QueryKeyword(keyword, "ebay", function (res) {
+    //   // let retList = res.res.sug;
+    //   // let keyList = "";
 
-      // retList.map((e) => {
-      //   let trim = CleanVal(e);
-      //   let encoded = encodeURIComponent(trim);
+    //   // retList.map((e) => {
+    //   //   let trim = CleanVal(e);
+    //   //   let encoded = encodeURIComponent(trim);
 
-      //   keyList += `<a class="${linkStyle}" href="http://www.ebay.com/sch/i.keyList?_nkw=${encoded}" target="_blank" class="live">${trim}</a><br />`;
-      // });
-      // $("#ebay").empty().append(keyList);
+    //   //   keyList += `<a class="${linkStyle}" href="http://www.ebay.com/sch/i.keyList?_nkw=${encoded}" target="_blank" class="live">${trim}</a><br />`;
+    //   // });
+    //   // $("#ebay").empty().append(keyList);
 
-      // CopyFunc("ebay", retList);
-    });
+    //   // CopyFunc("ebay", retList);
+    // });
 
     QueryKeyword(keyword, "googlenews", function (res) {
       let retList = res[1];
@@ -259,37 +260,34 @@ $(document).ready(function () {
       CopyFunc("googlenews", retList);
     });
 
-    QueryKeyword(keyword, "googleimages", function (res) {
-      let retList = res[1];
-      let keyList = retList.reduce((acc, key) => {
-        let trim = CleanVal(key);
-        let encoded = encodeURIComponent(trim);
-        return (
-          acc +
-          `<a class="${linkStyle}" href="https://www.google.com/search?q=${encoded}&tbm=isch" target="_blank">${trim}</a><br />`
-        );
-      }, "");
+    // QueryKeyword(keyword, "googleimages", function (res) {
+    //   let retList = res[1];
+    //   let keyList = retList.reduce((acc, key) => {
+    //     let trim = CleanVal(key);
+    //     let encoded = encodeURIComponent(trim);
+    //     return (
+    //       acc +
+    //       `<a class="${linkStyle}" href="https://www.google.com/search?q=${encoded}&tbm=isch" target="_blank">${trim}</a><br />`
+    //     );
+    //   }, "");
 
-      $("#googleimages").empty().append(keyList);
+    //   $("#googleimages").empty().append(keyList);
 
-      CopyFunc("googleimages", retList);
-    });
+    //   CopyFunc("googleimages", retList);
+    // });
 
     QueryKeyword(keyword, "yandex", function (res) {
-      console.log(res);
-      let retList = res[1];
-      let keyList = retList.reduce((acc, key) => {
-        let trim = CleanVal(key);
-        let encoded = encodeURIComponent(trim);
-        return (
-          acc +
-          `<a class="${linkStyle}" href="https://yandex.com/search/?text=${encoded}&lr=21176" target="_blank">${trim}</a><br />`
-        );
-      }, "");
-
-      $("#yandex").empty().append(keyList);
-
-      CopyFunc("yandex", retList);
+      // let retList = res[1];
+      // let keyList = retList.reduce((acc, key) => {
+      //   let trim = CleanVal(key);
+      //   let encoded = encodeURIComponent(trim);
+      //   return (
+      //     acc +
+      //     `<a class="${linkStyle}" href="https://yandex.com/search/?text=${encoded}&lr=21176" target="_blank">${trim}</a><br />`
+      //   );
+      // }, "");
+      // $("#yandex").empty().append(keyList);
+      // CopyFunc("yandex", retList);
     });
   });
 });
@@ -309,4 +307,18 @@ function CopyFunc(cId, keywords) {
       copyButton.innerHTML = `<i class="fas fa-copy"></i><span> Copy</span>`;
     }, 3000);
   });
+}
+
+function showHideAnswer(target) {
+  const element = document.getElementById(target);
+
+  if (element.classList.contains("hidden") == true) {
+    document.querySelectorAll(".answer").forEach((e) => {
+      e.classList.add("hidden");
+    });
+
+    element.classList.remove("hidden");
+  } else {
+    element.classList.add("hidden");
+  }
 }
