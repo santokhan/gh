@@ -7,19 +7,6 @@ function QueryKeyword(keyword, site, callback) {
     $("#cards").addClass("hidden");
   }
 
-  if (website == "bing") {
-    $.ajax({
-      url: "https://api.bing.com/osjson.aspx?JsonType=callback&JsonCallback=?",
-      jsonp: "jsonp",
-      dataType: "jsonp",
-      data: {
-        Query: querykeyword,
-        Market: "en-us",
-      },
-      success: callback,
-    });
-  }
-
   if (website == "google") {
     $.ajax({
       url: "https://suggestqueries.google.com/complete/search",
@@ -47,6 +34,19 @@ function QueryKeyword(keyword, site, callback) {
     });
   }
 
+  if (website == "bing") {
+    $.ajax({
+      url: "https://api.bing.com/osjson.aspx?JsonType=callback&JsonCallback=?",
+      jsonp: "jsonp",
+      dataType: "jsonp",
+      data: {
+        Query: querykeyword,
+        Market: "en-us",
+      },
+      success: callback,
+    });
+  }
+
   if (website == "yahoo") {
     $.ajax({
       url: "https://search.yahoo.com/sugg/gossip/gossip-us-ura/",
@@ -55,20 +55,6 @@ function QueryKeyword(keyword, site, callback) {
         command: querykeyword,
         nresults: "20",
         output: "jsonp",
-      },
-      success: callback,
-    });
-  }
-
-  if (website == "ebay") {
-    $.ajax({
-      url: "https://autosug.ebay.com/autosug",
-      dataType: "jsonp",
-      data: {
-        kwd: querykeyword,
-        v: "jsonp",
-        _dg: "1",
-        sId: "0",
       },
       success: callback,
     });
@@ -84,6 +70,42 @@ function QueryKeyword(keyword, site, callback) {
         "search-alias": "aps",
         mkt: "1",
       },
+      success: callback,
+    });
+  }
+
+  if (website == "ebay") {
+    $.ajax({
+      url: "https://autosug.ebay.com/autosug",
+      dataType: "jsonp",
+      data: { client: "chrome", kwd: querykeyword, _dg: "1", sId: "0" },
+      success: callback,
+    });
+  }
+
+  if (website == "googlenews") {
+    $.ajax({
+      url: `https://suggestqueries.google.com/complete/search?`,
+      dataType: "jsonp",
+      data: { client: "chrome", ds: "n", gl: "BD", q: querykeyword },
+      success: callback,
+    });
+  }
+
+  if (website == "googleimages") {
+    $.ajax({
+      url: `http://suggestqueries.google.com/complete/search?`,
+      dataType: "jsonp",
+      data: { client: "chrome", ds: "i", gl: "BD", q: querykeyword },
+      success: callback,
+    });
+  }
+
+  if (website == "yandex") {
+    $.ajax({
+      url: `https://yandex.com/suggest/suggest-ya.cgi?`,
+      dataType: "jsonp",
+      data: { client: "chrome", n: 30, v: 4, uil: "en", q: querykeyword },
       success: callback,
     });
   }
@@ -141,22 +163,19 @@ $(document).ready(function () {
       CopyFunc("google", retList);
     });
 
-    QueryKeyword(keyword, "yahoo", function (res) {
+    QueryKeyword(keyword, "youtube", function (res) {
+      let retList = res[1];
       let keyList = "";
-      let { results } = res.gossip;
 
-      let newKeyList = results.map((e) => e[1]);
-      console.log({ newKeyList });
-
-      results.map((e) => {
-        let trim = CleanVal(e.key);
+      retList.map((e) => {
+        let trim = CleanVal(e);
         let encoded = encodeURIComponent(trim);
 
-        keyList += `<a class="${linkStyle}" href="https://search.yahoo.com/search?p=${encoded}" target="_blank" class="live">${trim}</a><br />`;
+        keyList += `<a class="${linkStyle}" href="https://www.youtube.com/results?search_query=${encoded}" target="_blank" class="live">${trim}</a><br />`;
       });
-      $("#yahoo").empty().append(keyList);
+      $("#youtube").empty().append(keyList);
 
-      CopyFunc("yahoo", results);
+      CopyFunc("youtube", retList);
     });
 
     QueryKeyword(keyword, "bing", function (res) {
@@ -175,19 +194,22 @@ $(document).ready(function () {
       CopyFunc("bing", retList);
     });
 
-    QueryKeyword(keyword, "youtube", function (res) {
-      let retList = res[1];
+    QueryKeyword(keyword, "yahoo", function (res) {
       let keyList = "";
+      let { results } = res.gossip;
 
-      retList.map((e) => {
-        let trim = CleanVal(e);
+      let newKeyList = results.map((e) => e[1]);
+      // console.log({ newKeyList });
+
+      results.map((e) => {
+        let trim = CleanVal(e.key);
         let encoded = encodeURIComponent(trim);
 
-        keyList += `<a class="${linkStyle}" href="https://www.youtube.com/results?search_query=${encoded}" target="_blank" class="live">${trim}</a><br />`;
+        keyList += `<a class="${linkStyle}" href="https://search.yahoo.com/search?p=${encoded}" target="_blank" class="live">${trim}</a><br />`;
       });
-      $("#youtube").empty().append(keyList);
+      $("#yahoo").empty().append(keyList);
 
-      CopyFunc("youtube", retList);
+      CopyFunc("yahoo", results);
     });
 
     QueryKeyword(keyword, "amazon", function (res) {
@@ -205,26 +227,75 @@ $(document).ready(function () {
       CopyFunc("amazon", retList);
     });
 
-    QueryKeyword(keyword, "ebay", function (res1) {
-      let retList = res1.res.sug;
-      let keyList = "";
+    QueryKeyword(keyword, "ebay", function (res) {
+      console.log(res);
+      // let retList = res.res.sug;
+      // let keyList = "";
 
-      retList.map((e) => {
-        let trim = CleanVal(e);
+      // retList.map((e) => {
+      //   let trim = CleanVal(e);
+      //   let encoded = encodeURIComponent(trim);
+
+      //   keyList += `<a class="${linkStyle}" href="http://www.ebay.com/sch/i.keyList?_nkw=${encoded}" target="_blank" class="live">${trim}</a><br />`;
+      // });
+      // $("#ebay").empty().append(keyList);
+
+      // CopyFunc("ebay", retList);
+    });
+
+    QueryKeyword(keyword, "googlenews", function (res) {
+      let retList = res[1];
+      let keyList = retList.reduce((acc, key) => {
+        let trim = CleanVal(key);
         let encoded = encodeURIComponent(trim);
+        return (
+          acc +
+          `<a class="${linkStyle}" href="https://www.google.com/search?q=${encoded}&tbm=nws" target="_blank">${trim}</a><br />`
+        );
+      }, "");
 
-        keyList += `<a class="${linkStyle}" href="http://www.ebay.com/sch/i.keyList?_nkw=${encoded}" target="_blank" class="live">${trim}</a><br />`;
-      });
-      $("#ebay").empty().append(keyList);
+      $("#googlenews").empty().append(keyList);
 
-      CopyFunc("ebay", retList);
+      CopyFunc("googlenews", retList);
+    });
+
+    QueryKeyword(keyword, "googleimages", function (res) {
+      let retList = res[1];
+      let keyList = retList.reduce((acc, key) => {
+        let trim = CleanVal(key);
+        let encoded = encodeURIComponent(trim);
+        return (
+          acc +
+          `<a class="${linkStyle}" href="https://www.google.com/search?q=${encoded}&tbm=isch" target="_blank">${trim}</a><br />`
+        );
+      }, "");
+
+      $("#googleimages").empty().append(keyList);
+
+      CopyFunc("googleimages", retList);
+    });
+
+    QueryKeyword(keyword, "yandex", function (res) {
+      console.log(res);
+      let retList = res[1];
+      let keyList = retList.reduce((acc, key) => {
+        let trim = CleanVal(key);
+        let encoded = encodeURIComponent(trim);
+        return (
+          acc +
+          `<a class="${linkStyle}" href="https://yandex.com/search/?text=${encoded}&lr=21176" target="_blank">${trim}</a><br />`
+        );
+      }, "");
+
+      $("#yandex").empty().append(keyList);
+
+      CopyFunc("yandex", retList);
     });
   });
 });
 
 function CopyFunc(cId, keywords) {
   const keys = keywords;
-  console.log(keys);
   const id = cId;
 
   const copyKeys = id.toUpperCase() + "\n" + keys.join("\n");
